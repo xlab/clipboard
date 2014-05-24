@@ -4,6 +4,8 @@ Uses Qt's facilities to store or load text in/out of the clipboard. This branch 
 
 ### Installation:
 
+See the [requirements](https://github.com/go-qml/qml/tree/master) of go-qml. If they're met and `PKG_CONFIG_PATH` is set:
+
     $ go get gopkg.in/xlab/clipboard.v1
 
 ### Platforms:
@@ -30,3 +32,7 @@ BenchmarkReadAll	     100	  20067708 ns/op
 BenchmarkWriteAll	     100	  19592142 ns/op
 ok  	github.com/atotto/clipboard	4.119s
 ```
+
+### License
+
+[MIT](http://xlab.mit-license.org)
