@@ -4,25 +4,23 @@ package clipboard
 // #cgo LDFLAGS: -lstdc++
 // #cgo pkg-config: Qt5Core Qt5Widgets
 //
-// #include <stdlib.h>
-// #include "capi.h"
+// #include "clipboard.h"
 import "C"
 import (
 	"errors"
 	"fmt"
-	"unsafe"
 	"gopkg.in/qml.v0"
 )
 
 type Clipboard struct {
 	engine *qml.Engine
-	clip   *qml.Common
+	helper qml.Common
 }
 
 func New(engine *qml.Engine) *Clipboard {
 	return &Clipboard{
 		engine: engine,
-		clip:   qml.CommonOf(C.getClipboard(), engine),
+		helper: *qml.CommonOf(C.clipboardHelper(), engine),
 	}
 }
 
@@ -33,8 +31,7 @@ func (c *Clipboard) ReadAll() (text string, err error) {
 			err = errors.New(fmt.Sprintf("panic: %v", x))
 		}
 	}()
-	cstring := C.getText(unsafe.Pointer(c.clip.Addr()))
-	text = C.GoString(cstring)
+	text = c.helper.Call("getText").(string)
 	return
 }
 
@@ -45,8 +42,6 @@ func (c *Clipboard) WriteAll(text string) (err error) {
 			err = errors.New(fmt.Sprintf("panic: %v", x))
 		}
 	}()
-	cstring := C.CString(text)
-	defer C.free(unsafe.Pointer(cstring))
-	C.setText(unsafe.Pointer(c.clip.Addr()), cstring)
+	c.helper.Call("setText", text)
 	return
 }
