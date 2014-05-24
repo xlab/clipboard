@@ -1,4 +1,4 @@
-#include "clipboardhelper_moc.h"
+#include "helper_moc.h"
 #include "clipboard.h"
 
 ClipboardHelper_ *clipboardHelper() {
