@@ -33,6 +33,4 @@ BenchmarkWriteAll	     100	  19592142 ns/op
 ok  	github.com/atotto/clipboard	4.119s
 ```
 
-### License
-
-[MIT](http://xlab.mit-license.org)
+License is [MIT](http://xlab.mit-license.org).
