@@ -3,15 +3,14 @@ package clipboard
 import (
 	"testing"
 
-	"gopkg.in/qml.v0"
+	"gopkg.in/qml.v1"
 )
 
-func TestInit(t *testing.T) {
-	qml.Init(nil)
+func init() {
+	qml.SetupTesting()
 }
 
 func TestCopyAndPaste(t *testing.T) {
-	//qml.Init(nil)
 	engine := qml.NewEngine()
 	clip := New(engine)
 	//======================
@@ -33,7 +32,6 @@ func TestCopyAndPaste(t *testing.T) {
 }
 
 func BenchmarkReadAll(b *testing.B) {
-	//qml.Init(nil)
 	engine := qml.NewEngine()
 	clip := New(engine)
 	b.ResetTimer()
@@ -43,7 +41,6 @@ func BenchmarkReadAll(b *testing.B) {
 }
 
 func BenchmarkWriteAll(b *testing.B) {
-	//qml.Init(nil)
 	engine := qml.NewEngine()
 	clip := New(engine)
 	b.ResetTimer()

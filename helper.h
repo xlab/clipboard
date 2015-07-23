@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QObject>
+#include <QDebug>
 
 class ClipboardHelper : public QObject
 {
@@ -15,7 +16,6 @@ public:
 
     Q_INVOKABLE void setText(QString text){
         clipboard->setText(text, QClipboard::Clipboard);
-        clipboard->setText(text, QClipboard::Selection);
     }
 
     Q_INVOKABLE QVariant getText(){
